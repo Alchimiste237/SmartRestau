@@ -1,0 +1,21 @@
+{
+	# Disable the admin interface
+	admin off
+}
+
+:80 {
+	# Set the web root
+	root * /app/public
+
+	# Enable compression
+	encode zstd gzip
+
+	# Handle Laravel's index.php
+	php_server {
+		index index.php
+		resolve_root_symlink
+	}
+
+	# Static file handling
+	file_server
+}
