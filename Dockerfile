@@ -49,7 +49,7 @@ WORKDIR /app
 
 # Copy entrypoint script first and set permissions
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 # Create a dedicated directory for the SQLite database to avoid volume conflicts
 RUN mkdir -p /app/storage/db && chown www-data:www-data /app/storage/db
