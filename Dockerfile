@@ -76,4 +76,4 @@ ENV APP_DEBUG=false
 ENV FRANKENPHP_CONFIG="import /app/Caddyfile"
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["frankenphp", "run-config", "/app/Caddyfile"]
+CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]

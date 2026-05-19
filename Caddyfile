@@ -3,7 +3,7 @@
 	admin off
 }
 
-:80 {
+:{$PORT} {
 	# Set the web root
 	root * /app/public
 
