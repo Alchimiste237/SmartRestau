@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# Set default DB_DATABASE if not set
+export DB_DATABASE="${DB_DATABASE:-/app/storage/db/database.sqlite}"
+
 # Ensure the database directory exists and has correct permissions
 mkdir -p $(dirname "$DB_DATABASE")
 chown -R www-data:www-data $(dirname "$DB_DATABASE")
@@ -9,8 +12,9 @@ chown -R www-data:www-data $(dirname "$DB_DATABASE")
 if [ "$DB_CONNECTION" = "sqlite" ]; then
     if [ ! -f "$DB_DATABASE" ]; then
         touch "$DB_DATABASE"
-        chown www-data:www-data "$DB_DATABASE"
     fi
+    chown www-data:www-data "$DB_DATABASE"
+    chmod 664 "$DB_DATABASE"
 fi
 
 # Run migrations
