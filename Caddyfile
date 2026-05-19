@@ -1,9 +1,11 @@
 {
 	# Disable the admin interface
 	admin off
+	# Enable FrankenPHP
+	frankenphp
 }
 
-:{$PORT} {
+:{$PORT:80} {
 	# Set the web root
 	root * /app/public
 

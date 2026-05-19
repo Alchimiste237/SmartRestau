@@ -42,7 +42,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+    CMD wget --quiet --tries=1 --spider http://localhost:${PORT:-80}/ || exit 1
 
 # Set working directory
 WORKDIR /app
@@ -73,7 +73,6 @@ RUN chown -R www-data:www-data /app \
 # Environment variables for production
 ENV APP_ENV=production
 ENV APP_DEBUG=false
-ENV FRANKENPHP_CONFIG="import /app/Caddyfile"
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
