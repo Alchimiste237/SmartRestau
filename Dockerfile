@@ -73,6 +73,8 @@ RUN chown -R www-data:www-data /app \
 # Environment variables for production
 ENV APP_ENV=production
 ENV APP_DEBUG=false
+ENV SESSION_DRIVER=file
+ENV CACHE_DRIVER=file
 ENV DB_CONNECTION=sqlite
 ENV DB_DATABASE=/app/storage/db/database.sqlite
 
