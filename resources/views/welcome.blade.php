@@ -62,8 +62,14 @@
                         Register Your Restaurant
                     </a>
                     @php
-                        $testRestaurant = \App\Models\Restaurant::where('name', 'Urban Grill')->first();
-                        $testTable = $testRestaurant ? $testRestaurant->tables()->where('table_number', '12')->first() : null;
+                        $testRestaurant = null;
+                        $testTable = null;
+                        try {
+                            $testRestaurant = \App\Models\Restaurant::where('name', 'Urban Grill')->first();
+                            $testTable = $testRestaurant ? $testRestaurant->tables()->where('table_number', '12')->first() : null;
+                        } catch (\Exception $e) {
+                            // Database might not be ready or tables might not exist yet
+                        }
                     @endphp
                     @if($testRestaurant && $testTable)
                         <div class="space-y-4">

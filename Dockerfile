@@ -76,5 +76,5 @@ ENV APP_DEBUG=false
 ENV DB_CONNECTION=sqlite
 ENV DB_DATABASE=/app/storage/db/database.sqlite
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
