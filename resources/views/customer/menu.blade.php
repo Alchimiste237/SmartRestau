@@ -367,7 +367,7 @@
                     }
                     if (!silent) this.submitting = true;
                     try {
-                        const response = await fetch("{{ route('auth.customer.social') }}", {
+                        const response = await fetch("{{ route('auth.customer.social', [], false) }}", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -431,7 +431,7 @@
                         await new Promise(resolve => setTimeout(resolve, 2000));
 
                         // Call the payment simulation endpoint
-                        const response = await fetch("{{ route('customer.payment.simulate', [$restaurant->id, $table->id]) }}", {
+                        const response = await fetch("{{ route('customer.payment.simulate', [$restaurant->id, $table->id], false) }}", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -468,7 +468,7 @@
                 async actuallySubmitOrder() {
                     this.submitting = true;
                     try {
-                        const response = await fetch("{{ route('customer.order.process', [$restaurant->id, $table->id]) }}", {
+                        const response = await fetch("{{ route('customer.order.process', [$restaurant->id, $table->id], false) }}", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
