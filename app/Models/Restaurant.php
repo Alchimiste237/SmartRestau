@@ -20,6 +20,7 @@ class Restaurant extends Model
         'opening_hours',
         'logo_path',
         'cover_path',
+        'local_network_url',
         'is_active',
     ];
 
@@ -51,5 +52,18 @@ class Restaurant extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Get the URL for a specific table, considering local network overrides.
+     */
+    public function getTableUrl($tableId)
+    {
+        $baseUrl = $this->local_network_url ?: config('app.url');
+        
+        // Ensure baseUrl doesn't have a trailing slash
+        $baseUrl = rtrim($baseUrl, '/');
+        
+        return "{$baseUrl}/r/{$this->id}/t/{$tableId}";
     }
 }
