@@ -42,6 +42,12 @@
                         <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number</label>
                         <input type="text" name="contact" id="contact" value="{{ $restaurant->contact }}" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
                     </div>
+
+                    <div class="pt-4 border-t border-gray-100">
+                        <label for="local_network_url" class="block text-sm font-bold text-orange-600 mb-1">Offline LAN Support</label>
+                        <p class="text-xs text-gray-500 mb-2">If you are running this software on a local network, enter the local URL (e.g. <code>http://192.168.1.5:8000</code>). This will be used for QR codes.</p>
+                        <input type="text" name="local_network_url" id="local_network_url" value="{{ $restaurant->local_network_url }}" placeholder="http://192.168.1.5:8000" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    </div>
                 </div>
 
                 <!-- Right Column: Images -->

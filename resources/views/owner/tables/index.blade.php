@@ -38,14 +38,17 @@
         <!-- Tables List -->
         <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             @forelse($tables as $table)
+                @php
+                    $tableUrl = $restaurant->getTableUrl($table->id);
+                @endphp
                 <div class="bg-white p-6 shadow-sm rounded-lg border border-gray-100 flex flex-col items-center text-center">
                     <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                        {!! QrCode::size(100)->generate(route('customer.menu', ['restaurant' => $restaurant->id, 'table' => $table->id])) !!}
+                        {!! QrCode::size(100)->generate($tableUrl) !!}
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-1">{{ $table->table_number }}</h3>
-                    <p class="text-[10px] text-gray-400 mb-2 truncate w-full">{{ route('customer.menu', ['restaurant' => $restaurant->id, 'table' => $table->id]) }}</p>
+                    <p class="text-[10px] text-gray-400 mb-2 truncate w-full">{{ $tableUrl }}</p>
                     
-                    <a href="{{ route('customer.menu', ['restaurant' => $restaurant->id, 'table' => $table->id]) }}" target="_blank" class="text-xs font-bold text-orange-600 hover:text-orange-700 mb-4 inline-flex items-center">
+                    <a href="{{ $tableUrl }}" target="_blank" class="text-xs font-bold text-orange-600 hover:text-orange-700 mb-4 inline-flex items-center">
                         View Menu
                         <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>

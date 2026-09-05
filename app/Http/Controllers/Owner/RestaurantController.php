@@ -25,11 +25,12 @@ class RestaurantController extends Controller
             'business_type' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'contact' => 'required|string|max:255',
+            'local_network_url' => 'nullable|url|max:255',
             'logo' => 'nullable|image|max:2048',
             'cover' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->only(['name', 'business_type', 'location', 'contact']);
+        $data = $request->only(['name', 'business_type', 'location', 'contact', 'local_network_url']);
 
         if ($request->hasFile('logo')) {
             if ($restaurant->logo_path) {

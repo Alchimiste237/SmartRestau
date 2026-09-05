@@ -53,7 +53,7 @@ class TableController extends Controller
 
         $tableData = [];
         foreach ($tables as $table) {
-            $url = route('customer.menu', ['restaurant' => $restaurant->id, 'table' => $table->id]);
+            $url = $restaurant->getTableUrl($table->id);
             $qrCode = base64_encode(QrCode::format('svg')->size(200)->generate($url));
             
             $tableData[] = [
